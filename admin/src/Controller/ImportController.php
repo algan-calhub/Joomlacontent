@@ -6,6 +6,8 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Controller\BaseController;
+use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\Http\HttpFactory;
 
 class ImportController extends BaseController
 {
@@ -61,6 +63,34 @@ class ImportController extends BaseController
         ]);
         $model = $this->getModel('Import');
         echo (int) $model->createMenuItem($data);
+        $app->close();
+    }
+
+    public function chatgpt(): void
+    {
+        $app    = Factory::getApplication();
+        $prompt = $app->input->getString('prompt', '');
+        $params = ComponentHelper::getParams('com_contentimporter');
+        $key    = $params->get('openai_api_key');
+        $app->setHeader('Content-Type', 'text/plain', true);
+        if (!$key || !$prompt) {
+            echo '';
+            $app->close();
+        }
+        $http = HttpFactory::getHttp();
+        $body = json_encode([
+            'model'    => 'gpt-4o-mini',
+            'messages' => [
+                ['role' => 'user', 'content' => $prompt],
+            ],
+        ]);
+        $headers = [
+            'Content-Type'  => 'application/json',
+            'Authorization' => 'Bearer ' . $key,
+        ];
+        $response = $http->post('https://api.openai.com/v1/chat/completions', $body, $headers);
+        $data     = json_decode($response->body, true);
+        echo $data['choices'][0]['message']['content'] ?? '';
         $app->close();
     }
 }

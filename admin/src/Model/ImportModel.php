@@ -5,6 +5,9 @@ defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Language\LanguageHelper;
+use Joomla\CMS\Filesystem\File;
+use Joomla\CMS\Filesystem\Folder;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 use Joomla\CMS\Table\Table;
 
@@ -23,8 +26,24 @@ class ImportModel extends BaseDatabaseModel
         $db->setQuery('SELECT id, parent_id, title, menutype FROM #__menu WHERE client_id = 1');
         $menuitems = $db->loadAssocList();
 
-        $db->setQuery('SELECT lang_code FROM #__languages');
-        $languages = $db->loadColumn();
+        $languages = [];
+        foreach (LanguageHelper::getContentLanguages() as $lang) {
+            $code = $lang->lang_code;
+            $dir  = JPATH_ADMINISTRATOR . '/language/' . $code;
+            if (!is_dir($dir)) {
+                Folder::create($dir);
+            }
+            $ini = $dir . '/' . $code . '.com_contentimporter.ini';
+            $sys = $dir . '/' . $code . '.com_contentimporter.sys.ini';
+            if (!file_exists($ini)) {
+                File::copy(JPATH_ADMINISTRATOR . '/components/com_contentimporter/language/en-GB/en-GB.com_contentimporter.ini', $ini);
+            }
+            if (!file_exists($sys)) {
+                File::copy(JPATH_ADMINISTRATOR . '/components/com_contentimporter/language/en-GB/en-GB.com_contentimporter.sys.ini', $sys);
+            }
+            Factory::getLanguage()->load('com_contentimporter', JPATH_ADMINISTRATOR, $code, true, false);
+            $languages[] = $code;
+        }
 
         return compact('categories', 'menus', 'menuitems', 'languages');
     }
