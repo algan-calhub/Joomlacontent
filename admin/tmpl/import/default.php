@@ -98,5 +98,9 @@ use Joomla\CMS\Router\Route;
     <textarea id="gpt-prompt" rows="8" class="form-control" readonly></textarea>
     <button id="copy-prompt" class="btn btn-secondary" type="button"><?php echo Text::_('COM_CONTENTIMPORTER_COPY'); ?></button>
 </div>
+<div class="chatgpt-widget">
+    <textarea id="gpt-input" rows="8" class="form-control"></textarea>
+    <button id="gpt-send" class="btn btn-primary mt-2" type="button"><?php echo Text::_('COM_CONTENTIMPORTER_SEND'); ?></button>
+</div>
 <link rel="stylesheet" href="media/com_contentimporter/css/style.css">
 <script src="media/com_contentimporter/js/import.js"></script>
