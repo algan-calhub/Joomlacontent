@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="component" method="upgrade" version="5.0">
+    <name>com_contentimporter</name>
+    <author>OpenAI</author>
+    <version>1.0.0</version>
+    <description>COM_CONTENTIMPORTER_XML_DESCRIPTION</description>
+    <administration>
+        <menu>COM_CONTENTIMPORTER_TITLE</menu>
+        <files folder="admin">
+            <filename>com_contentimporter.php</filename>
+            <folder>src</folder>
+            <folder>tmpl</folder>
+            <folder>language</folder>
+            <folder>services</folder>
+        </files>
+        <languages>
+            <language tag="en-GB">language/en-GB/en-GB.com_contentimporter.ini</language>
+            <language tag="en-GB">language/en-GB/en-GB.com_contentimporter.sys.ini</language>
+            <language tag="de-DE">language/de-DE/de-DE.com_contentimporter.ini</language>
+            <language tag="de-DE">language/de-DE/de-DE.com_contentimporter.sys.ini</language>
+        </languages>
+    </administration>
+    <media folder="media/com_contentimporter" destination="com_contentimporter">
+        <folder>css</folder>
+        <folder>js</folder>
+    </media>
+</extension>
