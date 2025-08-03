@@ -8,6 +8,7 @@ use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Controller\BaseController;
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Http\HttpFactory;
+use Joomla\Component\Actionlogs\Administrator\Helper\ActionlogHelper;
 
 class ImportController extends BaseController
 {
@@ -21,6 +22,26 @@ class ImportController extends BaseController
         $messages = $model->import($file);
         foreach ($messages as $message) {
             $app->enqueueMessage($message);
+        }
+        $this->setRedirect('index.php?option=com_contentimporter');
+    }
+
+    public function direct(): void
+    {
+        $app   = Factory::getApplication();
+        $input = $app->input->getRaw('direct_input', '');
+        $model = $this->getModel('Import');
+        $messages = $model->importString($input);
+        foreach ($messages as $message) {
+            $app->enqueueMessage($message);
+        }
+        if (class_exists(ActionlogHelper::class)) {
+            ActionlogHelper::addLog(
+                Text::_('COM_CONTENTIMPORTER_DIRECT_IMPORT_LOG'),
+                $app->getIdentity()->id,
+                'com_contentimporter',
+                $app->getIdentity()->username
+            );
         }
         $this->setRedirect('index.php?option=com_contentimporter');
     }

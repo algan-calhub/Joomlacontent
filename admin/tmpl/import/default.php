@@ -102,5 +102,16 @@ use Joomla\CMS\Router\Route;
     <textarea id="gpt-input" rows="8" class="form-control"></textarea>
     <button id="gpt-send" class="btn btn-primary mt-2" type="button"><?php echo Text::_('COM_CONTENTIMPORTER_SEND'); ?></button>
 </div>
+<div class="direct-import mt-4">
+    <h3><?php echo Text::_('COM_CONTENTIMPORTER_DIRECT_INPUT'); ?></h3>
+    <form action="<?php echo Route::_('index.php?option=com_contentimporter&task=import.direct'); ?>" method="post" id="direct-form">
+        <textarea name="direct_input" id="direct-input" class="form-control" placeholder="<?php echo Text::_('COM_CONTENTIMPORTER_DIRECT_INPUT_PLACEHOLDER'); ?>" style="min-height:300px;font-family:monospace;"></textarea>
+        <div class="d-flex mt-2">
+            <small id="direct-counter" class="text-muted me-auto">1:1</small>
+            <button type="submit" id="direct-import-btn" class="btn btn-primary"><?php echo Text::_('COM_CONTENTIMPORTER_DIRECT_IMPORT'); ?></button>
+        </div>
+        <div id="direct-error" class="text-danger mt-2" style="display:none;"><?php echo Text::_('COM_CONTENTIMPORTER_INVALID_FORMAT'); ?></div>
+    </form>
+</div>
 <link rel="stylesheet" href="media/com_contentimporter/css/style.css">
 <script src="media/com_contentimporter/js/import.js"></script>

@@ -29,4 +29,61 @@ document.addEventListener('DOMContentLoaded',function(){
             });
         });
     }
+    var direct=document.getElementById('direct-input');
+    if(direct){
+        var form=document.getElementById('direct-form');
+        var error=document.getElementById('direct-error');
+        var counter=document.getElementById('direct-counter');
+        function updateCounter(){
+            var pos=direct.selectionStart;
+            var lines=direct.value.substr(0,pos).split('\n');
+            var line=lines.length;
+            var col=lines[lines.length-1].length+1;
+            counter.textContent=line+':'+col;
+        }
+        direct.addEventListener('input',updateCounter);
+        direct.addEventListener('click',updateCounter);
+        direct.addEventListener('keyup',updateCounter);
+        direct.addEventListener('keydown',function(e){
+            if(e.key==='Enter'&&e.ctrlKey){form.requestSubmit();}
+        });
+        direct.addEventListener('dragover',function(e){e.preventDefault();direct.classList.add('hover');});
+        direct.addEventListener('dragleave',function(){direct.classList.remove('hover');});
+        direct.addEventListener('drop',function(e){
+            e.preventDefault();
+            var file=e.dataTransfer.files[0];
+            if(file){
+                var reader=new FileReader();
+                reader.onload=function(ev){direct.value=ev.target.result;updateCounter();};
+                reader.readAsText(file);
+            }
+            direct.classList.remove('hover');
+        });
+        if(form){
+            form.addEventListener('submit',function(e){
+                error.style.display='none';
+                var val=direct.value.trim();
+                if(!val){
+                    e.preventDefault();
+                    error.style.display='block';
+                    return;
+                }
+                var valid=true;
+                try{JSON.parse(val);}
+                catch(err){
+                    if(val.indexOf(',')>-1){
+                        var rows=val.split('\n');
+                        if(rows.length<2){valid=false;}
+                    }else if(val.split('\n').length<2){
+                        valid=false;
+                    }
+                }
+                if(!valid){
+                    e.preventDefault();
+                    error.style.display='block';
+                }
+            });
+        }
+        updateCounter();
+    }
 });

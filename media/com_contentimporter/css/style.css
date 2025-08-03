@@ -2,3 +2,5 @@
 #drop-zone.hover{background:#f0f0f0}
 .sample-buttons .btn{margin-right:.5rem}
 .legend table{margin-bottom:2rem}
+#direct-input{min-height:300px;font-family:monospace}
+#direct-input.hover{background:#f0f0f0}
