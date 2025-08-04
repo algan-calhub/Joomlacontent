@@ -1,5 +1,5 @@
 <?php
-namespace Joomla\Component\ContentImporter\Administrator\View\Import;
+namespace Joomla\Component\ContentIntegrator\Administrator\View\Import;
 
 defined('_JEXEC') or die;
 

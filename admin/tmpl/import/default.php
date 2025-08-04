@@ -4,22 +4,22 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 ?>
-<form action="<?php echo Route::_('index.php?option=com_contentimporter&task=import.upload'); ?>" method="post" enctype="multipart/form-data" id="import-form">
+<form action="<?php echo Route::_('index.php?option=com_contentintegrator&task=import.upload'); ?>" method="post" enctype="multipart/form-data" id="import-form">
     <div id="drop-zone">
         <input type="file" name="file" accept=".csv,.json,.txt,.md">
-        <p><?php echo Text::_('COM_CONTENTIMPORTER_UPLOAD'); ?></p>
+        <p><?php echo Text::_('COM_CONTENTINTEGRATOR_UPLOAD'); ?></p>
     </div>
-    <button type="submit" class="btn btn-primary"><?php echo Text::_('COM_CONTENTIMPORTER_UPLOAD'); ?></button>
+    <button type="submit" class="btn btn-primary"><?php echo Text::_('COM_CONTENTINTEGRATOR_UPLOAD'); ?></button>
 </form>
 <div class="sample-buttons">
-    <a class="btn btn-secondary" href="<?php echo Route::_('index.php?option=com_contentimporter&task=import.sample&format=json'); ?>"><?php echo Text::_('COM_CONTENTIMPORTER_SAMPLE_JSON'); ?></a>
-    <a class="btn btn-secondary" href="<?php echo Route::_('index.php?option=com_contentimporter&task=import.sample&format=csv'); ?>"><?php echo Text::_('COM_CONTENTIMPORTER_SAMPLE_CSV'); ?></a>
-    <a class="btn btn-secondary" href="<?php echo Route::_('index.php?option=com_contentimporter&task=import.sample&format=txt'); ?>"><?php echo Text::_('COM_CONTENTIMPORTER_SAMPLE_TXT'); ?></a>
-    <a class="btn btn-secondary" href="<?php echo Route::_('index.php?option=com_contentimporter&task=import.sample&format=md'); ?>"><?php echo Text::_('COM_CONTENTIMPORTER_SAMPLE_MD'); ?></a>
+    <a class="btn btn-secondary" href="<?php echo Route::_('index.php?option=com_contentintegrator&task=import.sample&format=json'); ?>"><?php echo Text::_('COM_CONTENTINTEGRATOR_SAMPLE_JSON'); ?></a>
+    <a class="btn btn-secondary" href="<?php echo Route::_('index.php?option=com_contentintegrator&task=import.sample&format=csv'); ?>"><?php echo Text::_('COM_CONTENTINTEGRATOR_SAMPLE_CSV'); ?></a>
+    <a class="btn btn-secondary" href="<?php echo Route::_('index.php?option=com_contentintegrator&task=import.sample&format=txt'); ?>"><?php echo Text::_('COM_CONTENTINTEGRATOR_SAMPLE_TXT'); ?></a>
+    <a class="btn btn-secondary" href="<?php echo Route::_('index.php?option=com_contentintegrator&task=import.sample&format=md'); ?>"><?php echo Text::_('COM_CONTENTINTEGRATOR_SAMPLE_MD'); ?></a>
 </div>
-<h2><?php echo Text::_('COM_CONTENTIMPORTER_LEGEND'); ?></h2>
+<h2><?php echo Text::_('COM_CONTENTINTEGRATOR_LEGEND'); ?></h2>
 <div class="legend">
-    <h3><?php echo Text::_('COM_CONTENTIMPORTER_CATEGORIES'); ?></h3>
+    <h3><?php echo Text::_('COM_CONTENTINTEGRATOR_CATEGORIES'); ?></h3>
     <table class="table">
         <thead><tr><th></th><th>ID</th><th>Alias</th><th><?php echo Text::_('JFIELD_LANGUAGE_LABEL'); ?></th></tr></thead>
         <tbody>
@@ -33,7 +33,7 @@ use Joomla\CMS\Router\Route;
         <?php endforeach; ?>
         </tbody>
     </table>
-    <h3><?php echo Text::_('COM_CONTENTIMPORTER_MENUS'); ?></h3>
+    <h3><?php echo Text::_('COM_CONTENTINTEGRATOR_MENUS'); ?></h3>
     <table class="table">
         <thead><tr><th></th><th>ID</th><th>menutype</th><th><?php echo Text::_('JGLOBAL_TITLE'); ?></th></tr></thead>
         <tbody>
@@ -47,7 +47,7 @@ use Joomla\CMS\Router\Route;
         <?php endforeach; ?>
         </tbody>
     </table>
-    <h3><?php echo Text::_('COM_CONTENTIMPORTER_MENUITEMS'); ?></h3>
+    <h3><?php echo Text::_('COM_CONTENTINTEGRATOR_MENUITEMS'); ?></h3>
     <table class="table">
         <thead><tr><th></th><th>ID</th><th>Parent</th><th><?php echo Text::_('JGLOBAL_TITLE'); ?></th></tr></thead>
         <tbody>
@@ -61,7 +61,7 @@ use Joomla\CMS\Router\Route;
         <?php endforeach; ?>
         </tbody>
     </table>
-    <h3><?php echo Text::_('COM_CONTENTIMPORTER_LANGUAGES'); ?></h3>
+    <h3><?php echo Text::_('COM_CONTENTINTEGRATOR_LANGUAGES'); ?></h3>
     <table class="table">
         <thead><tr><th></th><th>ISO</th></tr></thead>
         <tbody>
@@ -75,8 +75,8 @@ use Joomla\CMS\Router\Route;
     </table>
 </div>
 <div class="new-menu">
-    <h3><?php echo Text::_('COM_CONTENTIMPORTER_NEW_MENU'); ?></h3>
-    <form action="<?php echo Route::_('index.php?option=com_contentimporter&task=import.createMenu'); ?>" method="post" id="form-menu">
+    <h3><?php echo Text::_('COM_CONTENTINTEGRATOR_NEW_MENU'); ?></h3>
+    <form action="<?php echo Route::_('index.php?option=com_contentintegrator&task=import.createMenu'); ?>" method="post" id="form-menu">
         <input type="text" name="menutype" placeholder="menutype">
         <input type="text" name="title" placeholder="title">
         <input type="text" name="language" placeholder="language">
@@ -84,8 +84,8 @@ use Joomla\CMS\Router\Route;
     </form>
 </div>
 <div class="new-menuitem">
-    <h3><?php echo Text::_('COM_CONTENTIMPORTER_NEW_MENUITEM'); ?></h3>
-    <form action="<?php echo Route::_('index.php?option=com_contentimporter&task=import.createMenuItem'); ?>" method="post" id="form-menuitem">
+    <h3><?php echo Text::_('COM_CONTENTINTEGRATOR_NEW_MENUITEM'); ?></h3>
+    <form action="<?php echo Route::_('index.php?option=com_contentintegrator&task=import.createMenuItem'); ?>" method="post" id="form-menuitem">
         <input type="text" name="parent_id" placeholder="parent">
         <input type="text" name="menutype" placeholder="menutype">
         <input type="text" name="title" placeholder="title">
@@ -94,24 +94,24 @@ use Joomla\CMS\Router\Route;
     </form>
 </div>
 <div class="prompt">
-    <h3><?php echo Text::_('COM_CONTENTIMPORTER_PROMPT'); ?></h3>
+    <h3><?php echo Text::_('COM_CONTENTINTEGRATOR_PROMPT'); ?></h3>
     <textarea id="gpt-prompt" rows="8" class="form-control" readonly></textarea>
-    <button id="copy-prompt" class="btn btn-secondary" type="button"><?php echo Text::_('COM_CONTENTIMPORTER_COPY'); ?></button>
+    <button id="copy-prompt" class="btn btn-secondary" type="button"><?php echo Text::_('COM_CONTENTINTEGRATOR_COPY'); ?></button>
 </div>
 <div class="chatgpt-widget">
     <textarea id="gpt-input" rows="8" class="form-control"></textarea>
-    <button id="gpt-send" class="btn btn-primary mt-2" type="button"><?php echo Text::_('COM_CONTENTIMPORTER_SEND'); ?></button>
+    <button id="gpt-send" class="btn btn-primary mt-2" type="button"><?php echo Text::_('COM_CONTENTINTEGRATOR_SEND'); ?></button>
 </div>
 <div class="direct-import mt-4">
-    <h3><?php echo Text::_('COM_CONTENTIMPORTER_DIRECT_INPUT'); ?></h3>
-    <form action="<?php echo Route::_('index.php?option=com_contentimporter&task=import.direct'); ?>" method="post" id="direct-form">
-        <textarea name="direct_input" id="direct-input" class="form-control" placeholder="<?php echo Text::_('COM_CONTENTIMPORTER_DIRECT_INPUT_PLACEHOLDER'); ?>" style="min-height:300px;font-family:monospace;"></textarea>
+    <h3><?php echo Text::_('COM_CONTENTINTEGRATOR_DIRECT_INPUT'); ?></h3>
+    <form action="<?php echo Route::_('index.php?option=com_contentintegrator&task=import.direct'); ?>" method="post" id="direct-form">
+        <textarea name="direct_input" id="direct-input" class="form-control" placeholder="<?php echo Text::_('COM_CONTENTINTEGRATOR_DIRECT_INPUT_PLACEHOLDER'); ?>" style="min-height:300px;font-family:monospace;"></textarea>
         <div class="d-flex mt-2">
             <small id="direct-counter" class="text-muted me-auto">1:1</small>
-            <button type="submit" id="direct-import-btn" class="btn btn-primary"><?php echo Text::_('COM_CONTENTIMPORTER_DIRECT_IMPORT'); ?></button>
+            <button type="submit" id="direct-import-btn" class="btn btn-primary"><?php echo Text::_('COM_CONTENTINTEGRATOR_DIRECT_IMPORT'); ?></button>
         </div>
-        <div id="direct-error" class="text-danger mt-2" style="display:none;"><?php echo Text::_('COM_CONTENTIMPORTER_INVALID_FORMAT'); ?></div>
+        <div id="direct-error" class="text-danger mt-2" style="display:none;"><?php echo Text::_('COM_CONTENTINTEGRATOR_INVALID_FORMAT'); ?></div>
     </form>
 </div>
-<link rel="stylesheet" href="media/com_contentimporter/css/style.css">
-<script src="media/com_contentimporter/js/import.js"></script>
+<link rel="stylesheet" href="media/com_contentintegrator/css/style.css">
+<script src="media/com_contentintegrator/js/import.js"></script>

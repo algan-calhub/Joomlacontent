@@ -1,5 +1,5 @@
 <?php
-namespace Joomla\Component\ContentImporter\Administrator\Model;
+namespace Joomla\Component\ContentIntegrator\Administrator\Model;
 
 defined('_JEXEC') or die;
 
@@ -33,15 +33,15 @@ class ImportModel extends BaseDatabaseModel
             if (!is_dir($dir)) {
                 Folder::create($dir);
             }
-            $ini = $dir . '/' . $code . '.com_contentimporter.ini';
-            $sys = $dir . '/' . $code . '.com_contentimporter.sys.ini';
+            $ini = $dir . '/' . $code . '.com_contentintegrator.ini';
+            $sys = $dir . '/' . $code . '.com_contentintegrator.sys.ini';
             if (!file_exists($ini)) {
-                File::copy(JPATH_ADMINISTRATOR . '/components/com_contentimporter/language/en-GB/en-GB.com_contentimporter.ini', $ini);
+                File::copy(JPATH_ADMINISTRATOR . '/components/com_contentintegrator/language/en-GB/en-GB.com_contentintegrator.ini', $ini);
             }
             if (!file_exists($sys)) {
-                File::copy(JPATH_ADMINISTRATOR . '/components/com_contentimporter/language/en-GB/en-GB.com_contentimporter.sys.ini', $sys);
+                File::copy(JPATH_ADMINISTRATOR . '/components/com_contentintegrator/language/en-GB/en-GB.com_contentintegrator.sys.ini', $sys);
             }
-            Factory::getLanguage()->load('com_contentimporter', JPATH_ADMINISTRATOR, $code, true, false);
+            Factory::getLanguage()->load('com_contentintegrator', JPATH_ADMINISTRATOR, $code, true, false);
             $languages[] = $code;
         }
 
@@ -80,13 +80,13 @@ class ImportModel extends BaseDatabaseModel
     {
         $path = $file['tmp_name'] ?? '';
         if (!$path) {
-            return [Text::_('COM_CONTENTIMPORTER_NO_FILE')];
+            return [Text::_('COM_CONTENTINTEGRATOR_NO_FILE')];
         }
         $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
         $content = file_get_contents($path);
         $data = $this->parseContent($content, $ext);
         if (!$data) {
-            return [Text::_('COM_CONTENTIMPORTER_INVALID_FORMAT')];
+            return [Text::_('COM_CONTENTINTEGRATOR_INVALID_FORMAT')];
         }
         return $this->processArticles($data);
     }
@@ -95,7 +95,7 @@ class ImportModel extends BaseDatabaseModel
     {
         $content = trim($content);
         if ($content === '') {
-            return [Text::_('COM_CONTENTIMPORTER_INVALID_FORMAT')];
+            return [Text::_('COM_CONTENTINTEGRATOR_INVALID_FORMAT')];
         }
         // Detect format
         $data = null;
@@ -126,7 +126,7 @@ class ImportModel extends BaseDatabaseModel
             }
         }
         if (!$data) {
-            return [Text::_('COM_CONTENTIMPORTER_INVALID_FORMAT')];
+            return [Text::_('COM_CONTENTINTEGRATOR_INVALID_FORMAT')];
         }
         return $this->processArticles($data);
     }
@@ -170,7 +170,7 @@ class ImportModel extends BaseDatabaseModel
             $table->state     = $article['state'] ?? 0;
             $table->check();
             $table->store();
-            $messages[] = Text::sprintf('COM_CONTENTIMPORTER_ARTICLE_CREATED', $table->title);
+            $messages[] = Text::sprintf('COM_CONTENTINTEGRATOR_ARTICLE_CREATED', $table->title);
         }
         return $messages;
     }
