@@ -26,5 +26,5 @@ if (!$container->has(CacheControllerFactoryInterface::class)) {
 
 echo $container
     ->get(ComponentDispatcherFactoryInterface::class)
-    ->createDispatcher('com_contentintegrator')
+    ->createDispatcher(Factory::getApplication())
     ->dispatch();
