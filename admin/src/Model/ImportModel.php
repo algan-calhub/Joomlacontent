@@ -78,18 +78,64 @@ class ImportModel extends BaseDatabaseModel
 
     public function import(array $file): array
     {
-        $messages = [];
         $path = $file['tmp_name'] ?? '';
         if (!$path) {
-            $messages[] = Text::_('COM_CONTENTIMPORTER_NO_FILE');
-            return $messages;
+            return [Text::_('COM_CONTENTIMPORTER_NO_FILE')];
         }
         $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
         $content = file_get_contents($path);
+        $data = $this->parseContent($content, $ext);
+        if (!$data) {
+            return [Text::_('COM_CONTENTIMPORTER_INVALID_FORMAT')];
+        }
+        return $this->processArticles($data);
+    }
+
+    public function importString(string $content): array
+    {
+        $content = trim($content);
+        if ($content === '') {
+            return [Text::_('COM_CONTENTIMPORTER_INVALID_FORMAT')];
+        }
+        // Detect format
+        $data = null;
+        $json = json_decode($content, true);
+        if (json_last_error() === JSON_ERROR_NONE && $json) {
+            $data = $json;
+        } else {
+            $rows = array_map('str_getcsv', explode("\n", $content));
+            if (count($rows) > 1) {
+                $headers = array_shift($rows);
+                $data = [];
+                foreach ($rows as $row) {
+                    if (!$row) {
+                        continue;
+                    }
+                    $data[] = array_combine($headers, $row);
+                }
+                if (!$data) {
+                    $data = null;
+                }
+            }
+            if (!$data) {
+                $lines = explode("\n", $content);
+                if (count($lines) > 1) {
+                    $title = trim(array_shift($lines));
+                    $data = [['title' => $title, 'text' => trim(implode("\n", $lines))]];
+                }
+            }
+        }
+        if (!$data) {
+            return [Text::_('COM_CONTENTIMPORTER_INVALID_FORMAT')];
+        }
+        return $this->processArticles($data);
+    }
+
+    private function parseContent(string $content, string $ext): array
+    {
         switch ($ext) {
             case 'json':
-                $data = json_decode($content, true);
-                break;
+                return json_decode($content, true) ?: [];
             case 'csv':
                 $rows = array_map('str_getcsv', explode("\n", trim($content)));
                 $headers = array_shift($rows);
@@ -100,11 +146,20 @@ class ImportModel extends BaseDatabaseModel
                     }
                     $data[] = array_combine($headers, $row);
                 }
-                break;
+                return $data;
+            case 'md':
+            case 'txt':
+                $lines = explode("\n", trim($content));
+                $title = trim(array_shift($lines));
+                return [['title' => $title, 'text' => trim(implode("\n", $lines))]];
             default:
-                $data = [];
-                break;
+                return [];
         }
+    }
+
+    private function processArticles(array $data): array
+    {
+        $messages = [];
         foreach (($data['articles'] ?? $data) as $article) {
             $table = Table::getInstance('Content', 'Joomla\\CMS\\Table\\', []);
             $table->title     = $article['title'] ?? '';
