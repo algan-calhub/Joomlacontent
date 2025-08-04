@@ -1,11 +1,11 @@
 <?php
-// Fallback-Dispatcher für Joomla 5 Backend-Komponenten
+\defined('_JEXEC') or die;
+
 use Joomla\CMS\Factory;
 use Joomla\CMS\Dispatcher\ComponentDispatcherFactoryInterface;
 
-defined('_JEXEC') or die;
+echo Factory::getContainer()
+    ->get(ComponentDispatcherFactoryInterface::class)
+    ->createDispatcher('com_contentintegrator')
+    ->dispatch();
 
-/** @var ComponentDispatcherFactoryInterface $dispatcherFactory */
-$dispatcherFactory = Factory::getContainer()->get(ComponentDispatcherFactoryInterface::class);
-$app               = Factory::getApplication();
-echo $dispatcherFactory->createDispatcher($app)->dispatch();
