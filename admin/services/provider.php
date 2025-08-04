@@ -1,15 +1,21 @@
 <?php
 
-defined('_JEXEC') or die;
+namespace Joomla\Component\Contentimporter\Administrator\Service;
 
-use Joomla\CMS\Extension\Service\Provider\MVCComponent;
+\defined('_JEXEC') or die;
+
+use Joomla\CMS\Extension\Service\Provider\MVCFactory;
+use Joomla\CMS\Extension\Service\Provider\RouterFactory;
 use Joomla\DI\Container;
 use Joomla\DI\ServiceProviderInterface;
 
-return new class implements ServiceProviderInterface
+class Provider implements ServiceProviderInterface
 {
-    public function register(Container $container)
+    public function register(Container $container): void
     {
-        $container->registerServiceProvider(new MVCComponent('ContentImporter'));
+        $namespace = 'Joomla\\Component\\Contentimporter';
+        $container->registerServiceProvider(new MVCFactory($namespace));
+        $container->registerServiceProvider(new RouterFactory($namespace));
     }
-};
+}
+
