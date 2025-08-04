@@ -11,6 +11,7 @@
             <filename>contentintegrator.php</filename>
             <folder>services</folder>
             <folder>src</folder>
+            <folder>tmpl</folder>
         </files>
         <config>config.xml</config>
         <languages>
