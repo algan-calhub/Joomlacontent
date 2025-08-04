@@ -8,13 +8,8 @@
         <menu>COM_CONTENTINTEGRATOR_TITLE</menu>
         <files folder="administrator/components/com_contentintegrator">
             <filename>contentintegrator.php</filename>
-            <filename>com_contentintegrator.php</filename>
-            <filename>config.xml</filename>
-            <filename>services/provider.php</filename>
+            <folder>services</folder>
             <folder>src</folder>
-            <folder>tmpl</folder>
-            <folder>language</folder>
-            <folder>sql</folder>
         </files>
         <config>config.xml</config>
         <languages folder="language">
@@ -27,7 +22,9 @@
             <service type="provider">services/provider.php</service>
         </services>
     </administration>
-    <namespace path="administrator/components/com_contentintegrator/src">Joomla\Component\Contentintegrator</namespace>
+    <namespace path="administrator/components/com_contentintegrator/src">
+        Joomla\Component\Contentintegrator
+    </namespace>
     <media folder="media/com_contentintegrator" destination="com_contentintegrator">
         <folder>css</folder>
         <folder>js</folder>
