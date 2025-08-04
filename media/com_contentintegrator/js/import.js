@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded',function(){
     if(send){
         send.addEventListener('click',function(){
             var text=document.getElementById('gpt-input').value;
-            fetch('index.php?option=com_contentimporter&task=import.chatgpt&format=raw',{
+            fetch('index.php?option=com_contentintegrator&task=import.chatgpt&format=raw',{
                 method:'POST',
                 body:new URLSearchParams({prompt:text})
             }).then(function(r){return r.text();}).then(function(res){

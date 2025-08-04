@@ -1,6 +1,6 @@
 <?php
 
-namespace Joomla\Component\Contentimporter\Administrator\Service;
+namespace Joomla\Component\ContentIntegrator\Administrator\Service;
 
 \defined('_JEXEC') or die;
 
@@ -13,7 +13,7 @@ class Provider implements ServiceProviderInterface
 {
     public function register(Container $container): void
     {
-        $namespace = 'Joomla\\Component\\Contentimporter';
+        $namespace = 'Joomla\\Component\\ContentIntegrator';
         $container->registerServiceProvider(new MVCFactory($namespace));
         $container->registerServiceProvider(new RouterFactory($namespace));
     }

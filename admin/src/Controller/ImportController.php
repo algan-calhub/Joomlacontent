@@ -1,5 +1,5 @@
 <?php
-namespace Joomla\Component\ContentImporter\Administrator\Controller;
+namespace Joomla\Component\ContentIntegrator\Administrator\Controller;
 
 defined('_JEXEC') or die;
 
@@ -23,7 +23,7 @@ class ImportController extends BaseController
         foreach ($messages as $message) {
             $app->enqueueMessage($message);
         }
-        $this->setRedirect('index.php?option=com_contentimporter');
+        $this->setRedirect('index.php?option=com_contentintegrator');
     }
 
     public function direct(): void
@@ -37,13 +37,13 @@ class ImportController extends BaseController
         }
         if (class_exists(ActionlogHelper::class)) {
             ActionlogHelper::addLog(
-                Text::_('COM_CONTENTIMPORTER_DIRECT_IMPORT_LOG'),
+                Text::_('COM_CONTENTINTEGRATOR_DIRECT_IMPORT_LOG'),
                 $app->getIdentity()->id,
-                'com_contentimporter',
+                'com_contentintegrator',
                 $app->getIdentity()->username
             );
         }
-        $this->setRedirect('index.php?option=com_contentimporter');
+        $this->setRedirect('index.php?option=com_contentintegrator');
     }
 
     public function sample(): void
@@ -91,7 +91,7 @@ class ImportController extends BaseController
     {
         $app    = Factory::getApplication();
         $prompt = $app->input->getString('prompt', '');
-        $params = ComponentHelper::getParams('com_contentimporter');
+        $params = ComponentHelper::getParams('com_contentintegrator');
         $key    = $params->get('openai_api_key');
         $app->setHeader('Content-Type', 'text/plain', true);
         if (!$key || !$prompt) {

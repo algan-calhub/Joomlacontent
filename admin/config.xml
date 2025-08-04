@@ -2,7 +2,7 @@
 <form>
     <fields name="params">
         <fieldset name="basic">
-            <field name="openai_api_key" type="text" label="COM_CONTENTIMPORTER_CONFIG_OPENAI_KEY_LABEL" />
+            <field name="openai_api_key" type="text" label="COM_CONTENTINTEGRATOR_CONFIG_OPENAI_KEY_LABEL" />
         </fieldset>
     </fields>
 </form>
