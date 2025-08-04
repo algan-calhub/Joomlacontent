@@ -4,6 +4,7 @@
     <author>Algan</author>
     <version>1.0.1</version>
     <description>COM_CONTENTINTEGRATOR_XML_DESCRIPTION</description>
+    <scriptfile>script.php</scriptfile>
     <administration folder="administrator">
         <menu>COM_CONTENTINTEGRATOR_TITLE</menu>
         <files folder="administrator/components/com_contentintegrator">
@@ -21,10 +22,10 @@
         <services>
             <service type="provider">services/provider.php</service>
         </services>
+        <namespace path="administrator/components/com_contentintegrator/src">
+            Joomla\Component\Contentintegrator
+        </namespace>
     </administration>
-    <namespace path="administrator/components/com_contentintegrator/src">
-        Joomla\Component\Contentintegrator
-    </namespace>
     <media folder="media/com_contentintegrator" destination="com_contentintegrator">
         <folder>css</folder>
         <folder>js</folder>

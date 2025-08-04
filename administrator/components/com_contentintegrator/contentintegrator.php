@@ -3,14 +3,19 @@
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Dispatcher\ComponentDispatcherFactoryInterface;
+use Joomla\CMS\MVC\Factory\MVCFactoryInterface;
 use Joomla\CMS\Extension\Service\Provider\ComponentDispatcherFactory;
+use Joomla\CMS\Extension\Service\Provider\MVCFactory;
 
 $container = Factory::getContainer();
+$ns        = 'Joomla\\Component\\Contentintegrator';
 
-// Falls der Service noch nicht bekannt ist: jetzt registrieren
 if (!$container->has(ComponentDispatcherFactoryInterface::class)) {
-    $namespace = 'Joomla\\Component\\Contentintegrator';
-    $container->registerServiceProvider(new ComponentDispatcherFactory($namespace));
+    $container->registerServiceProvider(new ComponentDispatcherFactory($ns));
+}
+
+if (!$container->has(MVCFactoryInterface::class)) {
+    $container->registerServiceProvider(new MVCFactory($ns));
 }
 
 echo $container
