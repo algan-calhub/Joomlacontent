@@ -13,11 +13,11 @@
             <folder>src</folder>
         </files>
         <config>config.xml</config>
-        <languages folder="language">
-            <language tag="en-GB">en-GB/en-GB.com_contentintegrator.ini</language>
-            <language tag="en-GB">en-GB/en-GB.com_contentintegrator.sys.ini</language>
-            <language tag="de-DE">de-DE/de-DE.com_contentintegrator.ini</language>
-            <language tag="de-DE">de-DE/de-DE.com_contentintegrator.sys.ini</language>
+        <languages>
+            <language tag="en-GB">administrator/language/en-GB/en-GB.com_contentintegrator.ini</language>
+            <language tag="en-GB">administrator/language/en-GB/en-GB.com_contentintegrator.sys.ini</language>
+            <language tag="de-DE">administrator/language/de-DE/de-DE.com_contentintegrator.ini</language>
+            <language tag="de-DE">administrator/language/de-DE/de-DE.com_contentintegrator.sys.ini</language>
         </languages>
         <services>
             <service type="provider">services/provider.php</service>
