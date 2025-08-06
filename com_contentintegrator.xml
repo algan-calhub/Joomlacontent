@@ -39,6 +39,6 @@
         <folder>images</folder>
     </media>
     <install>
-        <sql folder="sql" driver="mysql">install.mysql.utf8.sql</sql>
+        <sql folder="administrator/components/com_contentintegrator/sql" driver="mysql">install.mysql.utf8.sql</sql>
     </install>
 </extension>
