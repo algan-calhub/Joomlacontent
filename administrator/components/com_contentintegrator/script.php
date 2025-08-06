@@ -24,6 +24,10 @@ class Com_ContentintegratorInstallerScript
                 $app->enqueueMessage("Verzeichnis nicht anlegbar: {$dir}", 'error');
                 return false;
             }
+            if (!is_writable($dir)) {
+                $app->enqueueMessage("Verzeichnis nicht beschreibbar: {$dir}", 'error');
+                return false;
+            }
         }
         $xml = simplexml_load_file($root . '/com_contentintegrator.xml');
         $missing = [];
