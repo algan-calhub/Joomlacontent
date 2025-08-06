@@ -30,7 +30,7 @@
             <service type="provider">services/provider.php</service>
         </services>
         <namespace path="administrator/components/com_contentintegrator/src">
-            Joomla\Component\Contentintegrator\Administrator
+            Joomla\Component\ContentIntegrator\Administrator
         </namespace>
     </administration>
     <media destination="com_contentintegrator" folder="media/com_contentintegrator">
