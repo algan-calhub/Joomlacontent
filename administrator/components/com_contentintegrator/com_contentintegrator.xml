@@ -14,6 +14,7 @@
             <folder>services</folder>
             <folder>src</folder>
             <folder>tmpl</folder>
+            <folder>admin/sql</folder>
         </files>
         <config>config.xml</config>
         <languages>
@@ -32,6 +33,7 @@
     <media folder="media/com_contentintegrator" destination="com_contentintegrator">
         <folder>css</folder>
         <folder>js</folder>
+        <folder>images</folder>
     </media>
     <install>
         <sql folder="admin/sql" driver="mysql">install.mysql.utf8.sql</sql>
