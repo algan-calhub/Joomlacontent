@@ -10,11 +10,14 @@
     <administration folder="administrator">
         <menu>Content Integrator</menu>
         <files folder="administrator/components/com_contentintegrator">
+            <filename>com_contentintegrator.php</filename>
             <filename>contentintegrator.php</filename>
+            <filename>script.php</filename>
+            <filename>config.xml</filename>
             <folder>services</folder>
             <folder>src</folder>
             <folder>tmpl</folder>
-            <folder>admin/sql</folder>
+            <folder>sql</folder>
         </files>
         <config>config.xml</config>
         <languages>
@@ -30,12 +33,12 @@
             Joomla\Component\Contentintegrator\Administrator
         </namespace>
     </administration>
-    <media folder="media/com_contentintegrator" destination="com_contentintegrator">
+    <media destination="com_contentintegrator" folder="media/com_contentintegrator">
         <folder>css</folder>
         <folder>js</folder>
         <folder>images</folder>
     </media>
     <install>
-        <sql folder="admin/sql" driver="mysql">install.mysql.utf8.sql</sql>
+        <sql folder="sql" driver="mysql">install.mysql.utf8.sql</sql>
     </install>
 </extension>
