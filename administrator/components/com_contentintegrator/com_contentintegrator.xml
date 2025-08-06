@@ -34,6 +34,6 @@
         <folder>js</folder>
     </media>
     <install>
-        <sql folder="administrator/components/com_contentintegrator/admin/sql" driver="mysql">install.mysql.utf8.sql</sql>
+        <sql folder="admin/sql" driver="mysql">install.mysql.utf8.sql</sql>
     </install>
 </extension>
