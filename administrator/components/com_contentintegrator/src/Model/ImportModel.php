@@ -36,10 +36,10 @@ class ImportModel extends BaseDatabaseModel
             $ini = $dir . '/' . $code . '.com_contentintegrator.ini';
             $sys = $dir . '/' . $code . '.com_contentintegrator.sys.ini';
             if (!file_exists($ini)) {
-                File::copy(JPATH_ADMINISTRATOR . '/components/com_contentintegrator/language/en-GB/en-GB.com_contentintegrator.ini', $ini);
+                File::copy(JPATH_ADMINISTRATOR . '/language/en-GB/en-GB.com_contentintegrator.ini', $ini);
             }
             if (!file_exists($sys)) {
-                File::copy(JPATH_ADMINISTRATOR . '/components/com_contentintegrator/language/en-GB/en-GB.com_contentintegrator.sys.ini', $sys);
+                File::copy(JPATH_ADMINISTRATOR . '/language/en-GB/en-GB.com_contentintegrator.sys.ini', $sys);
             }
             Factory::getLanguage()->load('com_contentintegrator', JPATH_ADMINISTRATOR, $code, true, false);
             $languages[] = $code;
