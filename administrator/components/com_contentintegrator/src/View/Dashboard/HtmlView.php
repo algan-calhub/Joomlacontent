@@ -1,5 +1,5 @@
 <?php
-namespace Joomla\Component\Contentintegrator\Administrator\View\Dashboard;
+namespace Joomla\Component\ContentIntegrator\Administrator\View\Dashboard;
 
 defined('_JEXEC') or die;
 

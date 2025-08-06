@@ -8,7 +8,7 @@ use Joomla\CMS\Extension\Service\Provider\ComponentDispatcherFactory;
 use Joomla\CMS\Extension\Service\Provider\MVCFactory;
 
 $container = Factory::getContainer();
-$ns        = 'Joomla\\Component\\Contentintegrator';
+$ns        = 'Joomla\\Component\\ContentIntegrator';
 
 if (!$container->has(ComponentDispatcherFactoryInterface::class)) {
     $container->registerServiceProvider(new ComponentDispatcherFactory($ns));

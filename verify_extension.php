@@ -190,12 +190,13 @@ final class Verifier
                 $nsLine = null;
                 while (($line = fgets($handle)) !== false) {
                     $line = trim($line);
-                    if ($line !== '') {
-                        if (str_starts_with($line, 'namespace ')) {
-                            $nsLine = $line;
-                        }
-                        break;
+                    if ($line === '' || $line === '<?php' || str_starts_with($line, 'declare')) {
+                        continue;
                     }
+                    if (str_starts_with($line, 'namespace ')) {
+                        $nsLine = $line;
+                    }
+                    break;
                 }
                 fclose($handle);
                 if (!$nsLine || !str_starts_with($nsLine, 'namespace ' . $this->namespacePrefix)) {

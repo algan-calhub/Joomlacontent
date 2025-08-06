@@ -1,5 +1,5 @@
 <?php
-namespace Joomla\Component\Contentintegrator\Administrator\Controller;
+namespace Joomla\Component\ContentIntegrator\Administrator\Controller;
 
 defined('_JEXEC') or die;
 
