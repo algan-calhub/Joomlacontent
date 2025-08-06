@@ -2,7 +2,6 @@
 \defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
-use Joomla\CMS\Language\LanguageHelper;
 
 class com_contentintegratorInstallerScript
 {
@@ -15,8 +14,9 @@ class com_contentintegratorInstallerScript
         $db->setQuery("DELETE FROM #__extensions WHERE element = 'com_contentintegrator' AND type = 'component'");
         $db->execute();
 
+        $lang = Factory::getApplication()->getLanguage();
         foreach (['en-GB', 'de-DE'] as $tag) {
-            LanguageHelper::loadLanguageFromFilesystem($tag, JPATH_ADMINISTRATOR);
+            $lang->load('com_contentintegrator', JPATH_ADMINISTRATOR, $tag, true, true);
         }
     }
 }
